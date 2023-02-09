@@ -12,6 +12,7 @@ class Router
     private string $controllerName;
     private string $methodName;
     private string $queryString = "";
+    private array $params = [];
 
     public function __construct(array $routes)
     {
@@ -39,13 +40,27 @@ class Router
      */
     private function routeMatch()
     {
+
+        foreach ($this->routes as $route => $target) {
+            $regex = "#^$route$#";
+            if (preg_match($regex, $this->url, $matches)) {
+                // suppression de la première clef de $matches
+                array_shift($matches);
+                $this->params = $matches;
+
+                $this->controllerName = $target[0];
+                $this->methodName = $target[1];
+            }
+        }
+
+        /*
         if (array_key_exists($this->url, $this->routes)) {
             $foundRoute = $this->routes[$this->url];
             $this->controllerName = $foundRoute[0];
             $this->methodName = $foundRoute[1];
         } else {
             throw new Exception("Route non trouvée");
-        }
+        }*/
     }
 
     /**
@@ -60,6 +75,6 @@ class Router
         var_dump($query);
         $controller = new $this->controllerName($query);
         $method = $this->methodName;
-        $controller->$method();
+        $controller->$method(...$this->params);
     }
 }

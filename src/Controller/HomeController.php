@@ -13,4 +13,9 @@ class HomeController extends Controller
         echo "Je suis sur la page d'accueil";
         var_dump($this->query->get("age"));
     }
+
+    public function details(int $id)
+    {
+        echo "Vous êtes sur la page $id";
+    }
 }

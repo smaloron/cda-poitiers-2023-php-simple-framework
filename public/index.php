@@ -10,7 +10,8 @@ require "../vendor/autoload.php";
 define("ROOT_PATH", dirname(__DIR__));
 
 $routes = [
-    "/" => [HomeController::class, "index"]
+    "/" => [HomeController::class, "index"],
+    '/details/([0-9]+)' => [HomeController::class, "details"]
 ];
 
 $router = new Router($routes);

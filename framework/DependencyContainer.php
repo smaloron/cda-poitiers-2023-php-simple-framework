@@ -2,7 +2,7 @@
 
 namespace Seb\Framework;
 
-class DependencyContainer
+class DependencyContainer implements DependencyContainerInterface
 {
 
     private array $container;

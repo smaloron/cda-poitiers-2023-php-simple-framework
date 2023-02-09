@@ -13,9 +13,9 @@ class Router
     private string $methodName;
     private string $queryString = "";
     private array $params = [];
-    private DependencyContainer $container;
+    private DependencyContainerInterface $container;
 
-    public function __construct(array $routes, DependencyContainer $container)
+    public function __construct(array $routes, DependencyContainerInterface $container)
     {
         // obtention de l'url par découpage de l'uri
         // en deux parties, le chemin et le querystring

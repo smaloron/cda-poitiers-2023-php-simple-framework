@@ -7,7 +7,7 @@ abstract class Controller
     public function __construct(
         protected HTTPQuery $query,
         protected ViewEngine $viewEngine,
-        protected DependencyContainer $container
+        protected DependencyContainerInterface $container
     ) {
     }
 

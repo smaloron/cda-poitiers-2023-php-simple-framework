@@ -14,7 +14,14 @@ class Router
 
     public function __construct(array $routes)
     {
-        $this->url = filter_input(INPUT_SERVER, "REQUEST_URI");
+        // obtention de l'url par découpage de l'uri
+        // en deux parties, le chemin et le querystring
+        // URI = /person?id=8
+        // URL = /person querystring = id=8
+        $uri = filter_input(INPUT_SERVER, "REQUEST_URI");
+        $uriParts = explode("?", $uri);
+        $this->url = $uriParts[0];
+
         $this->routes = $routes;
         $this->routeMatch();
     }

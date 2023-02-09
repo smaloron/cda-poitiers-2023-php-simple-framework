@@ -11,6 +11,7 @@ class Router
     private string $url;
     private string $controllerName;
     private string $methodName;
+    private string $queryString = "";
 
     public function __construct(array $routes)
     {
@@ -21,6 +22,10 @@ class Router
         $uri = filter_input(INPUT_SERVER, "REQUEST_URI");
         $uriParts = explode("?", $uri);
         $this->url = $uriParts[0];
+        // Affectation du querystring si il y en a un
+        if (count($uriParts) === 2) {
+            $this->queryString = $uriParts[1];
+        }
 
         $this->routes = $routes;
         $this->routeMatch();
@@ -50,6 +55,9 @@ class Router
      */
     public function run()
     {
+        // Instanciation de l'objet Query
+        $query = new HTTPQuery($this->queryString);
+        var_dump($query);
         $controller = new $this->controllerName();
         $method = $this->methodName;
         $controller->$method();

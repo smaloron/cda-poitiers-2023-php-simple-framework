@@ -13,8 +13,9 @@ class Router
     private string $methodName;
     private string $queryString = "";
     private array $params = [];
+    private DependencyContainer $container;
 
-    public function __construct(array $routes)
+    public function __construct(array $routes, DependencyContainer $container)
     {
         // obtention de l'url par découpage de l'uri
         // en deux parties, le chemin et le querystring
@@ -30,6 +31,7 @@ class Router
 
         $this->routes = $routes;
         $this->routeMatch();
+        $this->container = $container;
     }
 
     /**
@@ -72,8 +74,13 @@ class Router
     {
         // Instanciation de l'objet Query
         $query = new HTTPQuery($this->queryString);
-        var_dump($query);
-        $controller = new $this->controllerName($query, new ViewEngine);
+
+        $controller = new $this->controllerName(
+            $query,
+            new ViewEngine,
+            $this->container
+        );
+
         $method = $this->methodName;
         $controller->$method(...$this->params);
     }

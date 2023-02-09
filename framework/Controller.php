@@ -2,7 +2,7 @@
 
 namespace Seb\Framework;
 
-class Controller
+abstract class Controller
 {
     public function __construct(protected HTTPQuery $query)
     {

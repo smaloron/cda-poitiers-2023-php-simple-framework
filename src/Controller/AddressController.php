@@ -2,7 +2,9 @@
 
 namespace Seb\App\Controller;
 
-class AddressController
+use Seb\Framework\Controller;
+
+class AddressController extends Controller
 {
 
     public function details(int $id)

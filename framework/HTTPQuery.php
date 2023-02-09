@@ -22,4 +22,18 @@ class HTTPQuery
             }
         }
     }
+
+    public function getQueryData(): array
+    {
+        return $this->queryData;
+    }
+
+    public function get(string $key): ?string
+    {
+        if (array_key_exists($key, $this->queryData)) {
+            return $this->queryData[$key];
+        } else {
+            return null;
+        }
+    }
 }

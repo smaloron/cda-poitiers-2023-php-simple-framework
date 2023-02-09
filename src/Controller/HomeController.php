@@ -4,14 +4,18 @@ namespace Seb\App\Controller;
 
 use Seb\Framework\Controller;
 use Seb\Framework\HTTPQuery;
+use Seb\Framework\ViewEngine;
 
 class HomeController extends Controller
 {
 
     public function index()
     {
-        echo "Je suis sur la page d'accueil";
-        var_dump($this->query->get("age"));
+
+        $this->render(
+            "default-view",
+            ["title" => "Bonjour"]
+        );
     }
 
     public function details(int $id)

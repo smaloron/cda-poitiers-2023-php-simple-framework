@@ -73,7 +73,7 @@ class Router
         // Instanciation de l'objet Query
         $query = new HTTPQuery($this->queryString);
         var_dump($query);
-        $controller = new $this->controllerName($query);
+        $controller = new $this->controllerName($query, new ViewEngine);
         $method = $this->methodName;
         $controller->$method(...$this->params);
     }

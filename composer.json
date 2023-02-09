@@ -5,7 +5,7 @@
     "autoload": {
         "psr-4": {
             "Seb\\App\\": "src/",
-            "Seb\\framework\\": "framework/"
+            "Seb\\Framework\\": "framework/"
         }
     },
     "authors": [

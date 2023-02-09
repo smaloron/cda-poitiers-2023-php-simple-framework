@@ -1,6 +1,7 @@
 <?php
 // Auto chargement des classes
 
+use Seb\App\Controller\AddressController;
 use Seb\Framework\Router;
 use Seb\App\Controller\HomeController;
 
@@ -11,7 +12,8 @@ define("ROOT_PATH", dirname(__DIR__));
 
 $routes = [
     "/" => [HomeController::class, "index"],
-    '/details/([0-9]+)' => [HomeController::class, "details"]
+    "/details/([0-9]+)" => [HomeController::class, "details"],
+    "/adresse/([0-9]+)" => [AddressController::class, "details"]
 ];
 
 $router = new Router($routes);

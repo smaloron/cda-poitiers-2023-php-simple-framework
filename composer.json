@@ -1,0 +1,18 @@
+{
+    "name": "seb/simple-framework",
+    "description": "Un framework PHP simple",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Seb\\App\\": "src/",
+            "Seb\\framework\\": "framework/"
+        }
+    },
+    "authors": [
+        {
+            "name": "seb",
+            "email": "contact@smaloron.eu"
+        }
+    ],
+    "require": {}
+}

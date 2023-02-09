@@ -6,6 +6,7 @@ class HTTPQuery
 {
 
     private array $queryData = [];
+    private array $postedData = [];
 
 
     public function __construct(string $queryString)
@@ -21,6 +22,18 @@ class HTTPQuery
                 $this->queryData[$parts[0]] = $parts[1];
             }
         }
+
+        $this->postedData = $_POST;
+    }
+
+    public function getPostedData(): array
+    {
+        return $this->postedData;
+    }
+
+    public function hasPostedData(): bool
+    {
+        return count($this->postedData) > 0;
     }
 
     public function getQueryData(): array
@@ -32,6 +45,9 @@ class HTTPQuery
     {
         if (array_key_exists($key, $this->queryData)) {
             return $this->queryData[$key];
+        }
+        if (array_key_exists($key, $this->postedData)) {
+            return $this->postedData[$key];
         } else {
             return null;
         }
